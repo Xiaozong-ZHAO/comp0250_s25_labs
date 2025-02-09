@@ -30,7 +30,17 @@ bool
 cw1::t1_callback(cw1_world_spawner::Task1Service::Request &request,
   cw1_world_spawner::Task1Service::Response &response) 
 {
+  // print the request message with ROS_INFO
+  ROS_INFO("The request message for task 1: Object Location -> [x: %.2f, y: %.2f, z: %.2f]",
+         request.object_loc.pose.position.x,
+         request.object_loc.pose.position.y,
+         request.object_loc.pose.position.z);
   /* function which should solve task 1 */
+  // 1. Get the block position
+  // 2. Move arm to that position
+  // 3. Change gripper distance to grab the item
+  // 4. Get the basket position
+  // 5. Move arm above the basket
 
   ROS_INFO("The coursework solving callback for task 1 has been triggered");
 

@@ -9,7 +9,7 @@ int main(int argc, char **argv){
   
   ros::init(argc,argv, "cw1_solution_node");
   ros::NodeHandle nh;
-
+  ROS_INFO("cw1_solution_node has been started");
   // create an instance of the cw1 class
   cw1 cw_class(nh);
 

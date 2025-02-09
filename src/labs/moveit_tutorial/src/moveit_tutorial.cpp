@@ -45,7 +45,7 @@ SrvClass::SrvClass(ros::NodeHandle &nh)
 
   // namespace for our ROS services, they will appear as "/namespace/srv_name"
   std::string service_ns = "/moveit_tutorial";
-
+  
   // advertise the services available from this node
   set_arm_srv_ = nh_.advertiseService(service_ns + "/set_arm",
     &SrvClass::setArmCallback, this);
@@ -53,6 +53,8 @@ SrvClass::SrvClass(ros::NodeHandle &nh)
     &SrvClass::setGripperCallback, this);
   add_collision_srv_ = nh_.advertiseService(service_ns + "/add_collision",
     &SrvClass::addCollisionCallback, this);
+  // remove_collision_srv_ = nh.advertiseService(service_ns + "/remove_collision",
+  //   &SrvCLass::removeCollisionCallback, this);
 
   // print to the terminal
   ROS_INFO("MoveIt! services initialisation finished, ready to go");
@@ -91,12 +93,23 @@ SrvClass::addCollisionCallback(moveit_tutorial::add_collision::Request &request,
   moveit_tutorial::add_collision::Response &response)
 {
   // TODO: use the addCollisionObject function
-
+  addCollisionObject(request.object_name, request.centre, 
+                    request.dimensions, request.orientation);
   response.success = true;
 
   return true;
 }
 
+////////////////////////////////////////////////////////////////////////////////
+// bool
+// SrvClass::removeCollisionCallback(moveit_tutorial::remove_collision::Request &request,
+//   moveit_tutorial::remove_collision::Response &response)
+// {
+//   removeCollisionObject(request.object_name);
+//   response.success = true;
+
+//   return true;
+// }
 
 ////////////////////////////////////////////////////////////////////////////////
 bool 
@@ -195,3 +208,11 @@ SrvClass::addCollisionObject(std::string object_name,
 
   return;
 }
+
+////////////////////////////////////////////////////////////////////////////////
+// void
+// SrvClass::removeCollisionObject(std::String object_name)
+// {
+//   // Check if the object exist
+  
+// }
